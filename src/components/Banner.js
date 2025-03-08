@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { ArrowRightCircle } from "react-bootstrap-icons"
 import headerImg from "../assets/img/header-img.svg"
@@ -37,6 +37,14 @@ export const Banner = () => {
         }
     }
 
+    // Scroll to Contact Section
+    const handleScrollToContact = () => {
+        const contactSection = document.getElementById("connect");
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <section className="banner" id="home">
             <Container>
@@ -46,8 +54,8 @@ export const Banner = () => {
                         <h1>
                             {`Hi, I'm Oshan`} <span className="wrap">{text}</span>
                         </h1>
-                        <p>I'm a front-end developer with a passion for creating beautiful and functional websites.</p>
-                        <button onClick={()=> console.log('connect')}>Let's Connect <ArrowRightCircle size={25}/></button>
+                        <p>I'm a fullstack developer with a passion for creating beautiful and functional websites.</p>
+                        <button onClick={handleScrollToContact}>Let's Connect <ArrowRightCircle size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
                         <img src={headerImg} alt="Header img"/>

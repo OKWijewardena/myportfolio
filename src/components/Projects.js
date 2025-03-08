@@ -1,7 +1,18 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
-import projImg1 from "../assets/img/project-img1.png";
-import projImg2 from "../assets/img/project-img2.png";
+import proj1 from "../assets/img/1.png";
+import proj2 from "../assets/img/2.png";
+import proj3 from "../assets/img/3.png";
+import proj4 from "../assets/img/4.png";
+import proj5 from "../assets/img/5.png";
+import proj6 from "../assets/img/6.jpg";
+import proj7 from "../assets/img/7.jpg";
+import proj8 from "../assets/img/8.jpg";
+import proj9 from "../assets/img/9.jpg";
+import proj10 from "../assets/img/10.jpg";
+import proj11 from "../assets/img/11.jpg";
+import proj12 from "../assets/img/12.jpg";
+import proj13 from "../assets/img/13.jpeg";
 import projImg3 from "../assets/img/project-img3.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import TrackVisibility from 'react-on-screen';
@@ -11,32 +22,88 @@ export const Projects = () => {
         {
           title: "Thinkable",
           description: "This is a project that using for manage events. there are two type of users hosting customers and ticket buying customers. hosting customers have to get permition fom amdin to host thier event from the web app. then customers can see event details, time, locations and purchase tickets. I implemented backend with strape nodeJS and frontend with nextJS React libraries ",
-          imgUrl: projImg1,
+          imgUrl: proj3,
         },
         {
           title: "SmartCo",
           description: "This is Saas system for SmartCo company based on Qatar. There are many users in the system. admin, employee, super admin and customer. I implemented backend with nodeJS and expressJS also frontend with ReactJS with MatirealUI styles",
-          imgUrl: projImg2,
+          imgUrl: proj1,
         },
         {
           title: "LocalShop",
-          description: "Design & Development",
-          imgUrl: projImg3,
+          description: "This is Saas web application for Create own stores for the customers and doing there businnesses. system have cusomers and Super admin. this web app implemented with php laravel",
+          imgUrl: proj2,
         },
         {
           title: "SmartCo Mobile App",
-          description: "Design & Development",
-          imgUrl: projImg1,
+          description: "This is Mobile app for SmartCo company based on Qatar. There is use by Smartco customer. I implemented Mobile app using flutter technologies and I use expressJs APIs for handling data",
+          imgUrl: proj5,
         },
         {
           title: "Ministore",
-          description: "Design & Development",
-          imgUrl: projImg2,
+          description: "This is Saas web application for Create own stores for the customers and doing there businnesses. system have cusomers and Super admin. this web app implemented with php laravel",
+          imgUrl: proj4,
         },
         {
-          title: "Business Startup",
-          description: "Design & Development",
-          imgUrl: projImg3,
+          title: "Code generation app with AI",
+          description: "Python and OpenAI technologies were used to implement an AI-generated style codes match with user requirements app.",
+          imgUrl: proj6,
+        },
+        {
+          title: "Table creating application with AI",
+          description: "Python and OpenAI technologies were used to implement an AI-generated tables for the user requirements app.",
+          imgUrl: proj6,
+        },
+        {
+          title: "Question answering app with AI",
+          description: "Python and OpenAI technologies were used to implement an AI-generated Answering to the multiple questions by reading PDF files app.",
+          imgUrl: proj6,
+        },
+        {
+          title: "Social media marketing app with AI",
+          description: "Python and OpenAI technologies were used to implement an AI-generated social media marketing strategy app.",
+          imgUrl: proj6,
+        },
+      ];
+
+      const Universityprojects = [
+        {
+          title: "Mern web application for class institute",
+          description: "Implemented class management functionalities for a web app on Institute Management System by using MERN stack technology.",
+          imgUrl: proj7,
+        },
+        {
+          title: "Mern web application for tea collecting",
+          description: "Implemented finance management functionalities for tea collecting web application that made for tea factory by using MERN stack technology.",
+          imgUrl: proj8,
+        },
+        {
+          title: "Mobile app for IoT button",
+          description: "Implemented Doctor and Nurse calling system by connecting with the physical IoT button using Java and FireBase in Android studio.",
+          imgUrl: proj9,
+        },
+        {
+          title: "Java web application for event planing",
+          description: "Implemented a Event Planning System for a Hotel by using java and Tomcat",
+          imgUrl: proj10,
+        },
+        {
+          title: "Mobile application for sell vehicle parts",
+          description: "Implemented Supplier Item Management for a Vehicle Service and Spare parts management system using Java and SQLite in Android studio.",
+          imgUrl: proj11,
+        },
+        {
+          title: "Web application for music instument store",
+          description: "Implemented a Musical Instruments Store System by using html, css, javascript and PHP.",
+          imgUrl: proj12,
+        },
+      ];
+
+      const Researchprojects = [
+        {
+          title: "ML web application for the research",
+          description: "Implementing machine learning web application using python flask as a backend and javascript ReactJS as a frontend",
+          imgUrl: proj13,
         },
       ];
 
@@ -61,6 +128,8 @@ export const Projects = () => {
                   </Nav>
                   <Tab.Content>
                     <Tab.Pane eventKey="first">
+                    <h2>Industrial Project</h2>
+                      <br/>
                       <Row>
                         {
                           projects.map((project, index) => {
@@ -74,11 +143,37 @@ export const Projects = () => {
                         }
                       </Row>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="section">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quam, quod neque provident velit, rem explicabo excepturi id illo molestiae blanditiis, eligendi dicta officiis asperiores delectus quasi inventore debitis quo.</p>
+                    <Tab.Pane eventKey="second">
+                      <h2>University Project</h2>
+                      <br/>
+                      <Row>
+                        {
+                          Universityprojects.map((project, index) => {
+                            return (
+                              <ProjectCard
+                                key={index}
+                                {...project}
+                                />
+                            )
+                          })
+                        }
+                      </Row>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quam, quod neque provident velit, rem explicabo excepturi id illo molestiae blanditiis, eligendi dicta officiis asperiores delectus quasi inventore debitis quo.</p>
+                    <h2>Research Project</h2>
+                      <br/>
+                      <Row>
+                        {
+                          Researchprojects.map((project, index) => {
+                            return (
+                              <ProjectCard
+                                key={index}
+                                {...project}
+                                />
+                            )
+                          })
+                        }
+                      </Row>
                     </Tab.Pane>
                   </Tab.Content>
                 </Tab.Container>
