@@ -54,7 +54,7 @@ export const Banner = () => {
                         <h1>
                             {`Hi, I'm Oshan`} <span className="wrap">{text}</span>
                         </h1>
-                        <p>I'm a fullstack developer with a passion for creating beautiful and functional websites.</p>
+                        <p>I am a adapted software engineer with a strong background in full-stack web development, specializing in SaaS applications and mobile applications. Proficient in JavaScript, TypeScript, Python, and PHP, I excel in web technologies like React.js and Node.js and mobile technologies like Flutter and React Native. My skills in code quality, performance optimization, and collaboration enable me to contribute effectively while continuously seeking professional growth.</p>
                         <button onClick={handleScrollToContact}>Let's Connect <ArrowRightCircle size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
