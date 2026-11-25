@@ -1,28 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { Reveal } from './Reveal';
 import emailjs from '@emailjs/browser';
 import navIcon1 from '../assets/img/nav-icon1.svg';
 import navIcon2 from '../assets/img/icons8-github.svg';
 import navIcon3 from '../assets/img/nav-icon3.svg';
 
 export const Contact = () => {
-  const sectionRef = useRef(null);
   const initial = { firstName: '', lastName: '', email: '', phone: '', message: '' };
   const [form, setForm] = useState(initial);
   const [btnText, setBtnText] = useState('Send Message');
   const [status, setStatus] = useState(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => e.target.classList.toggle('visible', e.isIntersecting)),
-      { threshold: 0.1 }
-    );
-    const items = sectionRef.current?.querySelectorAll('.fade-in-up');
-    items?.forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.08}s`;
-      observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
 
   const update = (key, val) => setForm(f => ({ ...f, [key]: val }));
 
@@ -54,15 +41,16 @@ export const Contact = () => {
   ];
 
   return (
-    <section className="contact-section" id="contact" ref={sectionRef}>
+    <section className="contact-section" id="contact">
       <div className="container-custom">
-        <div className="section-header fade-in-up">
+        <Reveal className="section-header">
           <div className="section-eyebrow">Work with me</div>
           <h2 className="section-title">Get In <span>Touch</span></h2>
-        </div>
+        </Reveal>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '32px', alignItems: 'start' }}>
-          <div className="contact-info-card fade-in-up">
+          <Reveal fill x={-32} y={0}>
+          <div className="contact-info-card">
             <h3>Let's build something great together</h3>
             <p>
               I'm always open to new opportunities, freelance projects, or just a great conversation
@@ -78,8 +66,10 @@ export const Contact = () => {
               ))}
             </div>
           </div>
+          </Reveal>
 
-          <div className="contact-form-card fade-in-up">
+          <Reveal fill x={32} y={0} delay={0.1}>
+          <div className="contact-form-card">
             <form onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
@@ -148,6 +138,7 @@ export const Contact = () => {
               )}
             </form>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

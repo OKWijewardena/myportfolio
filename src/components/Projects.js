@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Reveal } from './Reveal';
 import proj1 from '../assets/img/1.png';
 import proj2 from '../assets/img/2.png';
 import proj3 from '../assets/img/3.png';
@@ -15,20 +17,6 @@ import proj13 from '../assets/img/13.jpeg';
 
 export const Projects = () => {
   const [activeTab, setActiveTab] = useState('industrial');
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => e.target.classList.toggle('visible', e.isIntersecting)),
-      { threshold: 0.1 }
-    );
-    const items = sectionRef.current?.querySelectorAll('.fade-in-up');
-    items?.forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.07}s`;
-      observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [activeTab]);
 
   const tabs = [
     { id: 'industrial', label: 'Industry' },
@@ -62,14 +50,15 @@ export const Projects = () => {
   };
 
   return (
-    <section className="projects-section" id="projects" ref={sectionRef}>
+    <section className="projects-section" id="projects">
       <div className="container-custom">
-        <div className="section-header fade-in-up">
+        <Reveal className="section-header">
           <div className="section-eyebrow">What I've built</div>
           <h2 className="section-title">Featured <span>Projects</span></h2>
-        </div>
+        </Reveal>
 
-        <div className="tab-nav fade-in-up">
+        <Reveal className="tab-nav-wrap" delay={0.1}>
+        <div className="tab-nav">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -80,10 +69,20 @@ export const Projects = () => {
             </button>
           ))}
         </div>
+        </Reveal>
 
-        <div className="projects-grid">
+        <AnimatePresence mode="wait">
+        <motion.div
+          className="projects-grid"
+          key={activeTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           {projectData[activeTab].map((project, i) => (
-            <div className="project-card fade-in-up" key={i}>
+            <Reveal fill delay={(i % 3) * 0.08} key={i}>
+            <div className="project-card">
               <div className="project-img-wrap">
                 <img src={project.imgUrl} alt={project.title} />
                 <div className="project-img-overlay" />
@@ -95,7 +94,7 @@ export const Projects = () => {
                   href={project.projectLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="project-link-btn"
+                  className="project-link-btn link-arrow"
                 >
                   View Project
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -106,8 +105,10 @@ export const Projects = () => {
                 </a>
               </div>
             </div>
+            </Reveal>
           ))}
-        </div>
+        </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

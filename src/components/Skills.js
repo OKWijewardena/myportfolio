@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Reveal } from './Reveal';
 import { MdCode } from 'react-icons/md';
 import { TbWorldWww } from 'react-icons/tb';
 import { MdPhoneIphone } from 'react-icons/md';
@@ -8,21 +8,6 @@ import { MdChecklist } from 'react-icons/md';
 import { MdSmartToy } from 'react-icons/md';
 
 export const Skills = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => e.target.classList.toggle('visible', e.isIntersecting)),
-      { threshold: 0.1 }
-    );
-    const items = sectionRef.current?.querySelectorAll('.fade-in-up');
-    items?.forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.07}s`;
-      observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
   const skills = [
     {
       icon: <MdCode size={28} />,
@@ -62,16 +47,17 @@ export const Skills = () => {
   ];
 
   return (
-    <section className="skills-section" id="skills" ref={sectionRef}>
+    <section className="skills-section" id="skills">
       <div className="container-custom">
-        <div className="section-header fade-in-up">
+        <Reveal className="section-header">
           <div className="section-eyebrow">What I know</div>
           <h2 className="section-title">Skills & <span>Technologies</span></h2>
-        </div>
+        </Reveal>
 
         <div className="skill-grid">
           {skills.map((skill, i) => (
-            <div className="skill-card fade-in-up" key={i}>
+            <Reveal fill delay={(i % 3) * 0.08} key={i}>
+            <div className="skill-card">
               <div className="skill-icon">{skill.icon}</div>
               <h4>{skill.title}</h4>
               <div className="skill-tags">
@@ -80,6 +66,7 @@ export const Skills = () => {
                 ))}
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
       </div>

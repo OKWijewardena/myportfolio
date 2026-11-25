@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 :root {
   --bg: #080810;
@@ -66,7 +66,7 @@ body {
 }
 
 .nav-logo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 800;
   font-size: 22px;
   color: var(--text);
@@ -224,11 +224,11 @@ body {
 }
 
 .banner-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(12px, 7vw, 50px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
   margin-bottom: 24px;
   animation: fadeSlideUp 0.6s 0.1s ease both;
 }
@@ -361,9 +361,9 @@ body {
 
 .stat-item { display: flex; flex-direction: column; }
 .stat-number {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text);
   line-height: 1;
 }
@@ -398,10 +398,10 @@ body {
 }
 
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(32px, 5vw, 52px);
-  font-weight: 800;
-  letter-spacing: -1.5px;
+  font-weight: 700;
+  letter-spacing: -1px;
   line-height: 1.1;
   color: var(--text);
 }
@@ -461,7 +461,7 @@ body {
 }
 
 .skill-card h4 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -584,7 +584,7 @@ body {
 }
 
 .project-body h4 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -656,9 +656,9 @@ body {
 }
 
 .contact-info-card h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 16px;
 }
 
@@ -741,7 +741,7 @@ body {
   color: white;
   border: none;
   border-radius: 10px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -788,14 +788,146 @@ body {
 
 .footer p { color: var(--text-dim); font-size: 13px; }
 .footer span { color: var(--accent); }
+.footer a { color: var(--accent); }
+
+
+/* ── HERO ISOMETRIC SCENE ── */
+.banner-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-scene {
+  position: relative;
+  width: 125%;
+  max-width: 760px;
+  margin-left: -2%;
+  transform: translateY(-9%);
+  aspect-ratio: 1 / 1;
+  perspective: 1400px;
+  z-index: 1;
+}
+
+.scene-stage {
+  position: absolute;
+  inset: 6%;
+  transform-style: preserve-3d;
+}
+
+.scene-grid {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(circle at 50% 38%, rgba(108,99,255,0.22), transparent 62%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 45%, transparent 95%);
+          mask-image: radial-gradient(circle at 50% 50%, #000 45%, transparent 95%);
+}
+
+.scene-tile {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  box-shadow: inset 0 0 30px rgba(108,99,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 14%;
+}
+.scene-tile span {
+  width: 22%; aspect-ratio: 1;
+  border-radius: 28%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.scene-vortex {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  color: #b9b4ff;
+}
+.vortex-svg {
+  width: 100%; height: 100%;
+  animation: vortexSpin 28s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(108,99,255,0.45));
+}
+@keyframes vortexSpin { to { transform: rotate(360deg); } }
+
+.scene-badge {
+  position: absolute;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28%;
+  background: linear-gradient(145deg, #23233a, #121220);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.55),
+    0 0 26px rgba(108,99,255,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.scene-chip {
+  position: absolute;
+  left: 8%;
+  top: 30%;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 999px;
+  background: rgba(30,30,48,0.9);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(67,232,216,0.18);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .banner-two-col { grid-template-columns: 1fr; gap: 32px; }
+  .hero-scene { width: 100%; margin: 0 auto; max-width: 480px; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vortex-svg { animation: none; }
+}
 
 /* ── ANIMATIONS ── */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.reveal-fill { height: 100%; }
+.reveal-fill > * { height: 100%; }
+
+/* Animated gradient underline for text links */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  background-image: linear-gradient(90deg, var(--accent), var(--accent3));
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  transition: background-size 0.35s ease, color 0.25s;
 }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+.link-underline:hover { background-size: 100% 2px; color: var(--text); }
+
+/* Arrow nudge on project buttons */
+.link-arrow svg { transition: transform 0.25s ease; }
+.link-arrow:hover svg { transform: translate(2px, -2px); }
+
+/* Smoother, springier card hover (CSS only; reveal lives on the wrapper) */
+.skill-card, .project-card { will-change: transform; }
+.skill-card:hover { transform: translateY(-6px); }
+.project-card:hover { transform: translateY(-8px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
