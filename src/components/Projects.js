@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Reveal } from './Reveal';
 import proj1 from '../assets/img/1.png';
 import proj2 from '../assets/img/2.png';
 import proj3 from '../assets/img/3.png';
@@ -14,6 +13,47 @@ import proj10 from '../assets/img/10.jpg';
 import proj11 from '../assets/img/11.jpg';
 import proj12 from '../assets/img/12.jpg';
 import proj13 from '../assets/img/13.jpeg';
+
+const ease = [0.22, 1, 0.36, 1];
+const vp = { once: false, amount: 0.2 };
+
+// Heading: wipes in from the left like a curtain.
+const wipeHead = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } };
+const eyebrowV = {
+  hidden: { opacity: 0, x: -30 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease } },
+};
+const wipeV = {
+  hidden: { clipPath: 'inset(-20% 100% -20% 0%)', opacity: 0, x: -40 },
+  show: { clipPath: 'inset(-20% -5% -20% -5%)', opacity: 1, x: 0, transition: { duration: 0.9, ease } },
+};
+
+// Tabs: drop in, buttons pop one by one.
+const tabsV = {
+  hidden: { opacity: 0, y: -24, scale: 0.92 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease, staggerChildren: 0.1, delayChildren: 0.15 } },
+};
+const tabBtnV = {
+  hidden: { opacity: 0, scale: 0.6 },
+  show: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 400, damping: 15 } },
+};
+
+// Cards: 3D flip-up from the bottom edge; image is revealed by a wipe.
+const cardV = {
+  hidden: { opacity: 0, rotateX: -70, y: 80, scale: 0.9, transformOrigin: '50% 100%' },
+  show: (i = 0) => ({
+    opacity: 1, rotateX: 0, y: 0, scale: 1,
+    transition: { duration: 0.9, ease, delay: (i % 3) * 0.12, staggerChildren: 0.15, delayChildren: 0.3 + (i % 3) * 0.12 },
+  }),
+};
+const imgV = {
+  hidden: { clipPath: 'inset(100% 0 0 0)' },
+  show: { clipPath: 'inset(0% 0 0 0)', transition: { duration: 0.9, ease } },
+};
+const bodyV = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
 
 export const Projects = () => {
   const [activeTab, setActiveTab] = useState('industrial');
@@ -52,24 +92,37 @@ export const Projects = () => {
   return (
     <section className="projects-section" id="projects">
       <div className="container-custom">
-        <Reveal className="section-header">
-          <div className="section-eyebrow">What I've built</div>
-          <h2 className="section-title">Featured <span>Projects</span></h2>
-        </Reveal>
+        <motion.div
+          className="section-header"
+          variants={wipeHead}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.4 }}
+        >
+          <motion.div className="section-eyebrow" variants={eyebrowV}>What I've built</motion.div>
+          <motion.h2 className="section-title" variants={wipeV}>Featured <span>Projects</span></motion.h2>
+        </motion.div>
 
-        <Reveal className="tab-nav-wrap" delay={0.1}>
+        <motion.div
+          className="tab-nav-wrap"
+          variants={tabsV}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.6 }}
+        >
         <div className="tab-nav">
           {tabs.map(tab => (
-            <button
+            <motion.button
               key={tab.id}
+              variants={tabBtnV}
               className={`tab-btn${activeTab === tab.id ? ' active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </div>
-        </Reveal>
+        </motion.div>
 
         <AnimatePresence mode="wait">
         <motion.div
@@ -81,13 +134,22 @@ export const Projects = () => {
           transition={{ duration: 0.2 }}
         >
           {projectData[activeTab].map((project, i) => (
-            <Reveal fill delay={(i % 3) * 0.08} key={i}>
+            <motion.div
+              className="reveal-fill"
+              key={i}
+              custom={i}
+              variants={cardV}
+              initial="hidden"
+              whileInView="show"
+              viewport={vp}
+              style={{ transformPerspective: 1100 }}
+            >
             <div className="project-card">
-              <div className="project-img-wrap">
+              <motion.div className="project-img-wrap" variants={imgV}>
                 <img src={project.imgUrl} alt={project.title} />
                 <div className="project-img-overlay" />
-              </div>
-              <div className="project-body">
+              </motion.div>
+              <motion.div className="project-body" variants={bodyV}>
                 <h4>{project.title}</h4>
                 <p>{project.description}</p>
                 <a
@@ -103,9 +165,9 @@ export const Projects = () => {
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
                 </a>
-              </div>
+              </motion.div>
             </div>
-            </Reveal>
+            </motion.div>
           ))}
         </motion.div>
         </AnimatePresence>

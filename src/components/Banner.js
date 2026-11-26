@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { heroContainer, heroItem } from './Reveal';
-import { HeroScene } from './HeroScene';
+import { HeroPortrait } from './HeroPortrait';
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
@@ -100,7 +100,7 @@ export const Banner = () => {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <HeroScene />
+            <HeroPortrait />
           </motion.div>
         </div>
       </div>
